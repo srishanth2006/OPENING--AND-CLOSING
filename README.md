@@ -1,7 +1,6 @@
-# Ex 10 OPENING--AND-CLOSING
-# Name : ALDRIN.S
-# Reg no : 212223240005
-
+# OPENING--AND-CLOSING
+# Developed By: SRISHANTH J
+# Reg no: 212223240160
 ## Aim
 To implement Opening and Closing using Python and OpenCV.
 
@@ -10,60 +9,74 @@ To implement Opening and Closing using Python and OpenCV.
 2. OpenCV
 ## Algorithm:
 ### Step1:
-Import the necessary packages.
+Import the necessary packages
 
 ### Step2:
-Create the Text using cv2.putText.
+Create the Text using cv2.putText
 
 ### Step3:
+Create the structuring element
 
-Create the structuring element.
 ### Step4:
-Use Opening operation.
+Use Opening operation
 
 ### Step5:
-Use Closing Operation.
-
+Use Closing Operation
  
-## Program
-# Import the necessary packages
-```
-Developed by : SRISHANTH J
-Reg no : 212223240160
+## Program:
 
+``` Python
+# Developed By: Daniel C
+# reg no: 212223240023
+# Import the necessary packages
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-```
 
+# Step 1: Load the image using cv2.imread()
+image = cv2.imread("Fish.jpg")  
 
-# Create the Text using cv2.putText
-```
-img = np.zeros((100, 550), dtype = 'uint8')
-font = cv2.FONT_ITALIC
-cv2.putText(img, 'Ayisha Rinsi K', (5,70), font, 2, (255), 5, cv2.LINE_AA)
-n_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-plt.imshow(n_img)
+# Step 2: Create a structuring element (5x5 rectangular)
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+
+# Plot the original, opening, and closing images using Matplotlib
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 3, 1)
+plt.imshow(image_rgb)
+plt.title("Original Image")
 plt.axis("off")
-```
 
 
-# Create the structuring element
-```
-kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, (11,11)
-```
+
 # Use Opening operation
-```
-image_open = cv2.morphologyEx(n_img, cv2.MORPH_OPEN, kernel)
-plt.imshow(image_open)
+# Step 3: Use Opening operation (erosion followed by dilation)
+opening_image = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+opening_image_rgb = cv2.cvtColor(opening_image, cv2.COLOR_BGR2RGB)
+
+plt.subplot(1, 3, 2)
+plt.imshow(opening_image_rgb)
+plt.title("Opening Operation")
 plt.axis("off")
 
-```
+
+
 # Use Closing Operation
-```
-image_close = cv2.morphologyEx(n_img, cv2.MORPH_CLOSE, kernel)
-plt.imshow(image_close)
+# Step 4: Use Closing operation (dilation followed by erosion)
+closing_image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
+# Convert images from BGR to RGB for Matplotlib
+closing_image_rgb = cv2.cvtColor(closing_image, cv2.COLOR_BGR2RGB)
+plt.subplot(1, 3, 3)
+plt.imshow(closing_image_rgb)
+plt.title("Closing Operation")
 plt.axis("off")
+
+plt.tight_layout()
+plt.show()
+
+
 
 
 
@@ -71,17 +84,15 @@ plt.axis("off")
 ## Output:
 
 ### Display the input Image
-
-<img width="723" height="194" alt="image" src="https://github.com/user-attachments/assets/1f3dd088-66f6-41ca-9677-96c1646d3344" />
+<img width="483" height="333" alt="image" src="https://github.com/user-attachments/assets/1855cf87-1454-444c-8457-bbe0fc0f1956" />
 
 
 ### Display the result of Opening
-<img width="706" height="177" alt="image" src="https://github.com/user-attachments/assets/c7ab8125-1fa6-4288-8cdb-b289d1a5914c" />
-
+<img width="488" height="346" alt="image" src="https://github.com/user-attachments/assets/e8c30d8d-04ff-4a5e-8e9a-827698e2892a" />
 
 
 ### Display the result of Closing
-<img width="704" height="210" alt="image" src="https://github.com/user-attachments/assets/6f3eebf0-c008-41f8-b9e6-4d0c0481304a" />
+<img width="503" height="345" alt="image" src="https://github.com/user-attachments/assets/35bb4282-f8c4-4dde-952f-4c7b1a14e053" />
 
 
 ## Result
